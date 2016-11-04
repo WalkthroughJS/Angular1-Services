@@ -107,3 +107,18 @@ Let's go back out to the DOM and change the `ng-repeat` attribute to: `ng-repeat
   <p>Birth year: {{result.birth_year}}</p>
 </div>
 ```
+
+Okay, so now after saving it, opening `index.html`, and searching for "Luke", we see that it shows his name and birth year. Just for proof of concept, let's go back to the controller really quick and remove the character search query from the http call. This way, we'll just get a huge array of people.
+
+<pre><code>app.controller('myFirstController', function($scope, $http) {
+  $scope.makeAPIcall = function(character) {
+    $http.get('https://swapi.co/api/people/)
+     .then(function(api_response) {
+       console.log(api_response);
+       $scope.results = api_response.data.results;
+     });
+  }
+});
+</code></pre>
+
+Go back now and save/reopen your index file and since we don't have to search anything, just click the button. SWAPI is a bit slow, so you might wonder if it's actually working, but if you wait a second, you'll see 87 people's names and birth years show up on the screen in the same format that we had Luke's in. Because we promised our friend that they could search for characters, though, let's change it back to have the search query again and call it a day. We went over a lot in this lesson. In the next lesson, we're going to talk about how to create your own service that you can inject into a controller. It's a really useful skill, especially when you want to keep your controllers "slimmer". It also helps the idea of SOC (Separation of Concern), but often it's just a really useful tool to use. See you in the next lesson!
