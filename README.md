@@ -46,3 +46,4 @@ it will move on to the `.then()` method and pass that api response to the callba
   </body>
 </html>
 ```
+Now let's save and open up `index.html`. All you're going see is a text box and button. Let's try typing "Luke" into the text box and clicking the button. You'll see that we get a jumbled object outputted to the DOM. Obviously, we see "Luke Skywalker" in there somewhere, so we're going assume that the API call was successful. Now all we have to do is go through the object and see how to get access to just the character name. The easiest way to do this is to use console.log the api response inside the `.then()` method. After you do that, you'll find that the best way to get a hold of his info is `result.data.results[0]`, which will give you access to Luke's info.
