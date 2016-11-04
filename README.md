@@ -102,14 +102,8 @@ Let's try searching it now and see what happens. `api_response.data.results` is 
 Let's go back out to the DOM and change the `ng-repeat` attribute to: `ng-repeat="result in results"`. Let's just output the name and the bith_year, so let's go inside the div add two paragraph tags like this:
 
 ```text
-  <div class="" ng-repeat="result in results">
-      <p>
-        Character name: {{result.name}}
-      </p>
-      <p>
-        Birth year: {{result.birth_year}}
-      </p>
-
-      </div>
-    </div>
+<div class="" ng-repeat="result in results">
+  <p>Character name: {{result.name}}</p>
+  <p>Birth year: {{result.birth_year}}</p>
+</div>
 ```
