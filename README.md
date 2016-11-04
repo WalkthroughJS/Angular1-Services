@@ -22,6 +22,27 @@ app.controller('myFirstController', function($scope, $http) {
 });
 </code></pre>
 
-As an aside: Despite what people say about using console.log(), as long as you clean all the logs up after you're done, there's nothing wrong with it. Back on topic, though. 
+Let's go back to `index.html`. Okay, so let's change the name of the `ng-model` to character and add a button below it. The only attribute you need in there is a new one called `ng-click`. This aptly named attribute watches for this button to be clicked and then within the double quotes, you put in the function that you would like to call. The beautiful part about it, too, is that you can just put `character` as an argument and it will assume that it is a scope variable of that name, which we have declared in the ng-model in the input element above it. So, let's add `ng-click="makeAPIcall(character)"` to the button element. Now that we have that there, whenever we cick that button, it takes the value of the scope variable `character` and calls the `makeAPIcall` function with `character` as an argument inside the controller. If we go back and look at the controller, we see that we take that value of `character` and concatenate it to the end of the get request to SWAPI to search for whatever the user was looking for. Once it gets a response back,
+it will move on to the `.then()` method and pass that api response to the callback function. From there, we take the response and assign it to `$scope.result`, which should make it visible on the DOM. WHEW! That's a lot. Let's make it visible on the DOM, though. Below the button let's just create an empty div and toss in our `{{result}}` to see what we get.
 
-Let's go back to `index.htm
+```text
+<!DOCTYPE html>
+<html ng-app="myFirstNgApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body ng-controller="myFirstController">
+
+    <input type="text" ng-model="character">
+    <button ng-click="makeAPIcall(character)">Search</button>
+
+    <div class="">
+      {{result}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
+```
