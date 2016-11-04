@@ -46,4 +46,30 @@ it will move on to the `.then()` method and pass that api response to the callba
   </body>
 </html>
 ```
-Now let's save and open up `index.html`. All you're going see is a text box and button. Let's try typing "Luke" into the text box and clicking the button. You'll see that we get a jumbled object outputted to the DOM. Obviously, we see "Luke Skywalker" in there somewhere, so we're going assume that the API call was successful. Now all we have to do is go through the object and see how to get access to just the character name. The easiest way to do this is to use console.log the api response inside the `.then()` method. After you do that, you'll find that the best way to get a hold of his info is `result.data.results[0]`, which will give you access to Luke's info.
+Now let's save and open up `index.html`. All you're going see is a text box and button. Let's try typing "Luke" into the text box and clicking the button. You'll see that we get a jumbled object outputted to the DOM. Obviously, we see "Luke Skywalker" in there somewhere, so we're going assume that the API call was successful. Now all we have to do is go through the object and see how to get access to just the character name. The easiest way to do this is to use console.log the api response inside the `.then()` method. After you do that, you'll find that the best way to get a hold of his info is `result.data.results[0]`, which will give you access to Luke's info. As much as we would love to leave it that long and have to retype that in our HTML every time we wanted to access Luke's info, let's clean that up a little bit by going back to the controller and replacing what we assign to `$scope.result` for `api_response.data.result[0]`. Now all we have to do is use `result`. Nice. 
+
+Let's try to organize how this data looks on the DOM a little bit so it is easier for the user to understand. Let's go back to the DOM and look in that div we created. Looking at the huge list of key/value pairs that the response has, let's be lazy and just throw it all out on the screen at once, so we don't have to write every single one. Add this to the div as an attribute: `ng-repeat="(key, value) in result"`. Basically, what we're doing is iterating through the list of key/value pairs inside `$scope.result` and recreating another div for every individual key/value pair. Inside the div, we'll put `{{key}}: {{value}}`, which will put the key on the left side, and the value on the right side. It may seem a little confusing, but you'll see what I mean when you run it.
+
+```text
+<!DOCTYPE html>
+<html ng-app="myFirstNgApp">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body ng-controller="myFirstController">
+
+    <input type="text" ng-model="character">
+    <button ng-click="makeAPIcall(character)">Search</button>
+
+    <div class="" ng-repeat="(key, value) in result">
+      {{key}}: {{value}}
+
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
+```
