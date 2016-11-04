@@ -5,8 +5,14 @@
     <title></title>
   </head>
   <body ng-controller="myFirstController">
-    <input type="text" ng-model="hello">
-    <p>{{hello}}</p>
+
+    <input type="text" ng-model="character">
+    <button ng-click="makeAPIcall(character)">Search</button>
+
+    <div class="" ng-repeat="result in results">
+      <p>Character name: {{result.name}}</p>
+      <p>Birth year: {{result.birth_year}}</p>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js" charset="utf-8"></script>
     <script src="app.js" charset="utf-8"></script>
