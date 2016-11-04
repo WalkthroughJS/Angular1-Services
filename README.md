@@ -85,3 +85,31 @@ Now let's save and open `index.html` in the browser, the right-click and inspect
   }
 });
 </code></pre>
+
+Let's try searching it now and see what happens. `api_response.data.results` is an array, so it outputs a key of `0` and a value of index 0 of the `api_response.data.results` array. Granted, there's only one index of this array, but it still works the same way. Really quick, for semantic reasons, let's go back to the controller really quick and change `$scope.result` to `$scope.results`, considering that normally we would be getting more than one result. 
+
+<pre><code>app.controller('myFirstController', function($scope, $http) {
+  $scope.makeAPIcall = function(character) {
+    $http.get('https://swapi.co/api/people/?search=' + character)
+     .then(function(api_response) {
+       console.log(api_response);
+       $scope.results = api_response.data.results;
+     });
+  }
+});
+</code></pre>
+
+Let's go back out to the DOM and change the `ng-repeat` attribute to: `ng-repeat="result in results"`. Let's just output the name and the bith_year, so let's go inside the div add two paragraph tags like this:
+
+```text
+  <div class="" ng-repeat="result in results">
+      <p>
+        Character name: {{result.name}}
+      </p>
+      <p>
+        Birth year: {{result.birth_year}}
+      </p>
+
+      </div>
+    </div>
+```
