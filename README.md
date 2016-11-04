@@ -73,3 +73,15 @@ Let's try to organize how this data looks on the DOM a little bit so it is easie
   </body>
 </html>
 ```
+Now let's save and open `index.html` in the browser, the right-click and inspect the text we just outputted. You'll see that in our html in the editor, we only have one div, but it's with that `ng-repeat` attribute. In the browser, though, you have a single dive for every key/value pair. This is why `ng-repeat` is so useful. It also works for arrays. It will give you access to each index of the array. To test this theory, let's go back to the controller, and remove the `[0]` from the `$scope.result` declaration.
+
+<pre><code>app.controller('myFirstController', function($scope, $http) {
+  $scope.makeAPIcall = function(character) {
+    $http.get('https://swapi.co/api/people/?search=' + character)
+     .then(function(api_response) {
+       console.log(api_response);
+       $scope.result = api_response.data.results;
+     });
+  }
+});
+</code></pre>
